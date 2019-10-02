@@ -3,56 +3,81 @@ const str = 12
 console.log(str[0])
 
 const time = (h,m) => {
-    let minuteStr = ''
     let strM = m.toString()
     let arrM = []
     for (let i = 0; i<strM.length; i++){
         arrM[i]=strM[i]
     }
 
-    if ()
+    console.log(m)
+    console.log (h)
+
 
     const minute = (m) => {
     switch (m) {
         case 0:
-            return `o'clock`
-        case 1 || 59:
+            break
+        case 1:
             return 'one'
-        case 2 || 58:
+        case 2:
             return 'two'
-        case 3 || 57:
+        case 3:
             return 'three'
-        case 4 || 56:
+        case 4:
             return 'four'
-        case 5 || 55:
+        case 5:
             return 'five'
-        case 6 || 54:
+        case 6:
             return 'six'
-        case 7 || 53:
+        case 7:
             return 'seven'
-        case 8 || 52:
+        case 8:
             return 'eight'
-        case 9 || 51:
+        case 9:
             return 'nine'
-        case 10 || 50:
+        case 10:
             return 'ten'
-        case 11 || 49:
+        case 11:
             return 'eleven'
-        case 12 || 48:
+        case 12:
             return 'twelve'
-        case 13 || 47:
+        case 13:
             return 'thirteen'
-        case 14 || 48:
-            return 'fourteen'
+        case  9:
+            return 'one'
+        case 58:
+            return 'two'
+        case 57:
+            return 'three'
+        case 56:
+            return 'four'
+        case 55:
+            return 'five'
+        case 54:
+            return 'six'
+        case 53:
+            return 'seven'
+        case 52:
+            return 'eight'
+        case 51:
+            return 'nine'
+        case  50:
+            return 'ten'
+        case  49:
+            return 'eleven'
+        case  48:
+            return 'twelve'
+        case  47:
+            return 'thirteen'
         case 30:
             return 'half'
-        case 15||45:
+        case 15:
             return 'quarter'
-        case 30:
-            return 'half'
+        case 45:
+            return 'quarter'
         default:
             const minutes2 = (arrM) => {
-                switch (arrM[1]) {
+                switch (arrM[1]||arrM) {
                     case '0':
                         break
                     case '1':
@@ -78,46 +103,80 @@ const time = (h,m) => {
             const minutes1 = (arrM) => {
                 switch (arrM[0]) {
                     case '1':
-                        return minutes2 + 'teen'
+                        return minutes2(arrM) + 'teen'
                     case '2':
-                        return 'twenty ' + minutes2
+                        return 'twenty ' + minutes2(arrM)
                     case '3':
-                        return 'twenty ' + minutes2
+                        return 'twenty ' + minutes2(Math.abs(parseInt(arrM[1]) - 10).toString())
                     case '4':
-                        return minutes2 + 'teen'
+                        return minutes2(Math.abs(parseInt(arrM[1]) - 10).toString()) + 'teen'
                 }
             }
-            minuteStr = minutes1
+            return minutes1(arrM);
 
 
         }}
     
     const hour = (h) => {
         switch (h) {
-            case '1':
+            case 1:
                 return 'one'
-            case '2':
+            case 2:
                 return 'two'
-            case '3':
+            case 3:
                 return 'three'
-            case '4':
+            case 4:
                 return 'four'
-            case '5':
+            case 5:
                 return 'five'
-            case '6':
+            case 6:
                 return 'six'
-            case '7':
+            case 7:
                 return 'seven'
-            case '8':
+            case 8:
                 return 'eight'
-            case '9':
+            case 9:
                 return 'nine'
-            case '10':
+            case 10:
                 return 'ten'
-            case '11':
+            case 11:
                 return 'eleven'
-            case '12':
+            case 12:
                 return 'twelve'
-        }}
+            default:
+                break
+        }
     
     }
+
+
+    console.log(m)
+
+
+    if (m === 30 || m === 15) {
+        return `${minute(m)} past ${hour(h)}`
+    }
+
+    if (m === 45) {
+        return `${minute(m)} to ${hour((h === 12) ? 1 : h + 1)}`
+    }
+    
+    if (m === 0) {
+        return `${hour(h)} o' clock`
+    }
+
+    if (m === 1) {
+        return `${minute(m)} minute past ${hour(h)}`
+    }
+    
+    if (m < 30 && m > 0) {
+        return `${minute(m)} minutes past ${hour(h)}`
+    }
+    if (m > 30 && m < 60) {
+        return `${minute(m)} minutes to ${hour((h === 12) ? 1 : h + 1)}`
+    }
+    
+    err;
+    }
+
+console.log(time(5,45))

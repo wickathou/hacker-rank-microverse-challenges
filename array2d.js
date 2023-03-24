@@ -8,9 +8,6 @@ const array = [
 ]
 
 const hourglass = (arr) => {
-  arr.forEach(element => {
-    console.log(element);
-  });
 
   let maxValue = ''
 
